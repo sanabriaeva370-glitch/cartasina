@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Sinai ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background: linear-gradient(180deg,#ff758c,#ff7eb3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.container{
+    width:100%;
+    max-width:420px;
+    height:100vh;
+    background:white;
+    position:relative;
+    overflow-y:auto;
+    overflow-x:hidden;
+    box-shadow:0 0 40px rgba(0,0,0,0.3);
+    text-align:center;
+    padding:20px;
+}
+
+#inicio{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+}
+
+h1{
+    font-size:42px;
+    color:#e63956;
+    margin-bottom:20px;
+    animation:latido 2s infinite;
+}
+
+button{
+    background:#e63956;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#carta{
+    display:none;
+    animation:fadeIn 1.5s;
+}
+
+#texto{
+    font-size:16px;
+    line-height:1.6;
+    color:#333;
+    text-align:justify;
+    white-space:pre-line;
+}
+
+img{
+    width:80%;
+    margin:15px 0;
+    border-radius:15px;
+}
+
+/* Animaciones */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes latido{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+}
+
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:18px;
+    animation:float 6s linear infinite;
+    opacity:0.6;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="inicio">
+        <h1>Sinai ❤️</h1>
+        <button onclick="abrirCarta()">Ábreme 💌</button>
+    </div>
+
+    <div id="carta">
+        <p id="texto"></p>
+
+        <img src="perrito1.png">
+        <img src="perrito2.png">
+        <img src="gif.gif">
+    </div>
+
+</div>
+
+<!-- VIDEO OCULTO -->
+<iframe 
+width="0" 
+height="0" 
+src="https://www.youtube.com/embed/yI-bkEe55DQ?autoplay=1&loop=1&playlist=yI-bkEe55DQ"
+frameborder="0"
+allow="autoplay">
+</iframe>
+
+<script>
+
+/* TEXTO COMPLETO */
+const mensaje = `Querida Sinai,
+
+"Espero que este día sea motivo de alegría junto a tus seres queridos.
+ Escribo esta carta para expresar mi profundo agradecimiento por todo lo 
+ que hemos compartido; tanto en los momentos de felicidad como en los 
+ momentos malos, e incluso en aquellos periodos de distancia.
+ Para mí, representa un verdadero privilegio formar parte de tu vida cotidiana.
+Desde que nos conocimos —hace ya un tiempo considerable— cada conversación ha sido 
+sumamente valiosa. Mi único deseo es que estas palabras te brinden un momento de alegría y logren 
+iluminar tu día. Te quiero mucho.
+
+Te quiero mucho :)
+
+Con cariño,
+Andru Sanabria ❤️`;
+
+let i = 0;
+
+function escribirTexto(){
+    if(i < mensaje.length){
+        document.getElementById("texto").innerHTML += mensaje.charAt(i);
+        i++;
+        setTimeout(escribirTexto, 60); // velocidad escritura
+    }
+}
+
+function abrirCarta(){
+    document.getElementById("inicio").style.display="none";
+    document.getElementById("carta").style.display="block";
+    escribirTexto();
+}
+
+/* corazones suaves */
+function crearCorazon(){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"%";
+    document.querySelector(".container").appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+}
+
+setInterval(()=>{
+    crearCorazon();
+},1500);
+
+</script>
+
+</body>
+</html>
